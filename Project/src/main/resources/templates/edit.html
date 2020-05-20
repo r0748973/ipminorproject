@@ -2,32 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>edit task</title>
+    <title th:text="#{editt}"></title>
 </head>
 <body>
 <div th:include="header.html"></div>
 <div th:if="${notexist}">
-    <div> Task not found</div>
+    <div th:text="#{tnf}"> </div>
 </div>
 <div th:unless="${notexist}">
 <form th:action="@{'/tasks/edited/' + ${editId}}">
-    <h4>edit task</h4>
+    <h4 th:text="#{editt}"></h4>
     <div>
-        <label for="title">title: </label>
+        <label for="title" th:text="#{title}"> </label>
         <input type="text" name="title" id="title" th:value="${editTitle}">
     </div>
     <div>
-        <label for="description">description: </label>
+        <label for="description" th:text="#{ description}"> </label>
         <input type="text" name="description" id="description" th:value="${editDescription}">
     </div>
     <div>
-        <label for="date">due-date: </label>
+        <label for="date" th:text="#{ duedate}"> </label>
         <input type="datetime-local" name="date" id="date"  th:value="${editDate}">
     </div>
 
 
-    <input type="submit" value="edit">
+    <input type="submit" th:value="#{editt}">
+    <div id="taskid" th:value="${editId}" style="display: none"></div>
 </form>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            var taskid = $('#taskid').val();
+            if (selectedOption != ''){
+                window.location.replace(taskid + '?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
 </body>
 </html>
