@@ -33,6 +33,7 @@
             <td th:text="*{task.title}"></td>
             <td th:text="*{task.description}"> /td>
         </tr>
+        <a th:href="@{'/tasks/edit/' + ${taskid}}" th:text="#{editt}" ></a>
         <a th:href="@{'/tasks/' + ${taskid} + '/sub/create'}" th:text="#{creates}" ></a>
         <div id="taskid" th:value="${taskid}" style="display: none"></div>
 
