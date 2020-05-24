@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 public class Task {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="my_seq_gen")
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="seq")
     @SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
     private Long id;
     @NotEmpty

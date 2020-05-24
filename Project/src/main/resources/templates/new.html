@@ -10,12 +10,14 @@
     <h4 th:text="#{addt}"></h4>
     <p th:text="${#fields.globalErrors()}"></p>
     <div>
-        <input type="text"  th:field="*{title}">
+        <label for="title" th:text="#{title}"> </label>
+        <input id="title" type="text"  th:field="*{title}">
         <p th:errors="*{title}"></p>
     </div>
     <div>
         <label for="description" th:text="#{description}"> </label>
         <input type="text" id="description" th:field="*{description}" >
+        <p th:errors="*{description}"></p>
     </div>
     <div>
         <label for="date" th:text="#{duedate}"> </label>
