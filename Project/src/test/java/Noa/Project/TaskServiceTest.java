@@ -61,12 +61,20 @@ public class TaskServiceTest {
 
         taskService.addSubtask(2L, subTaskDTO);
         Task task = taskService.getTasks().get(2L);
+        SubTask subTask = task.getSubTasks().get(0);
 
         //checks
         assertNotNull(task.getSubTasks());
+        assertFalse(task.noSubtasks());
         assertFalse(task.getSubTasks().isEmpty());
         assertEquals(1, task.getSubTasks().size());
         assertNotNull(task.getSubTasks().get(0));
+        assertEquals(subTask.getId(), 1L);
+        assertEquals(subTask.getTitle(), "Noa");
+        assertEquals(subTask.getDescription(), "COOL");
+        subTask.setId(2L);
+        assertEquals(subTask.getId(), 2L);
+
 
     }
 
@@ -93,6 +101,10 @@ public class TaskServiceTest {
         assertNotNull(task);
         assertEquals(task.getTitle(), "jaff");
         assertEquals(task.getDescription(), "Dunham");
+        assertEquals(task.getDate(), LocalDateTime.of(2020, 03, 10, 10, 0));
+        assertEquals(task.getdatedetail(), "March 10 2020 at 10 AM");
+        assertEquals(task.toString(), "• jaff: due March 10 2020 at 10 AM");
+        assertEquals(task.getDuedate(), "• jaff: due March 10 2020 at 10 AM");
     }
 
 }
